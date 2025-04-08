@@ -8,7 +8,7 @@ from sklearn.preprocessing import StandardScaler, LabelEncoder
 best_model = joblib.load("models/best_loan_model.pkl")
 
 # Load dataset to retrieve encoders
-data = pd.read_csv('data/loan_approval_dataset.csv')
+data = pd.read_csv("data/loan_approval_dataset.csv", delimiter=";")
 data.columns = data.columns.str.strip()
 
 # Encoding categorical variables
