@@ -4,12 +4,19 @@ import streamlit as st
 import joblib
 from sklearn.preprocessing import StandardScaler, LabelEncoder
 
+# Load the trained model
+best_model = joblib.load("best_loan_model.pkl")
 
-best_model = joblib.load("models/best_loan_model.pkl")
-
-
-data = pd.read_csv("data/loan_approval_dataset.csv", delimiter=";")
+# Load dataset to retrieve encoders
+data = pd.read_csv("loan_approval_dataset.csv")
 data.columns = data.columns.str.strip()
+
+
+if data['loan_status'].dtype == 'object':
+    data['loan_status'] = data['loan_status'].str.strip().str.lower()
+    data['loan_status'] = data['loan_status'].map({'approved': 1, 'rejected': 0})
+
+
 label_enc_edu = LabelEncoder()
 data['education'] = label_enc_edu.fit_transform(data['education'])
 label_enc_emp = LabelEncoder()
@@ -55,5 +62,9 @@ user_scaled = scaler.transform(user_data)
 
 if st.button("Predict"):
     prediction = best_model.predict(user_scaled)
-    result = "Approved" if prediction[0] == 1 else "Rejected"
+    prediction_cleaned = str(prediction[0]).strip().lower()
+    st.write(f"Debug - Raw Model Prediction Output: {prediction_cleaned}")
+    
+    
+    result = "Approved" if prediction_cleaned in ["approved", "1", 1] else "Rejected"
     st.write(f"### Loan Status: {result}")
