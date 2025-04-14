@@ -10,10 +10,10 @@ best_model = joblib.load("models/best_loan_model.pkl")
 
 data = pd.read_csv("data/loan_approval_dataset.csv", delimiter=";")
 data.columns = data.columns.str.strip()
-# label_enc_edu = LabelEncoder()
-# data['education'] = label_enc_edu.fit_transform(data['education'])
-# label_enc_emp = LabelEncoder()
-# data['self_employed'] = label_enc_emp.fit_transform(data['self_employed'])
+label_enc_edu = LabelEncoder()
+data['education'] = label_enc_edu.fit_transform(data['education'])
+label_enc_emp = LabelEncoder()
+data['self_employed'] = label_enc_emp.fit_transform(data['self_employed'])
 
 
 scaler = StandardScaler()
