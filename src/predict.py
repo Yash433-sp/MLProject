@@ -8,12 +8,7 @@ from sklearn.preprocessing import StandardScaler, LabelEncoder
 best_model = joblib.load("models/best_loan_model.pkl")
 
 # Load dataset to retrieve encoders
-try:
-    data = pd.read_csv("data/loan_approval_dataset.csv")
-    data.columns = data.columns.str.strip()
-except Exception as e:
-    st.error(f"Failed to load dataset: {e}")
-    st.stop()
+
 
 
 if data['loan_status'].dtype == 'object':
