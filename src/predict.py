@@ -5,10 +5,10 @@ import joblib
 from sklearn.preprocessing import StandardScaler, LabelEncoder
 
 # Load the trained model
-best_model = joblib.load("best_loan_model.pkl")
+best_model = joblib.load("model/best_loan_model.pkl")
 
 # Load dataset to retrieve encoders
-data = pd.read_csv("models/loan_approval_dataset.csv")
+data = pd.read_csv("data/loan_approval_dataset.csv")
 data.columns = data.columns.str.strip()
 
 
