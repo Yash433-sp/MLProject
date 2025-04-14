@@ -7,9 +7,9 @@ import os
 # --- Load all pre-trained components safely ---
 try:
     best_model = joblib.load("models/best_loan_model.pkl")
-    label_enc_edu = joblib.load("models/label_encoder_education.pkl")
-    label_enc_emp = joblib.load("models/label_encoder_self_employed.pkl")
-    scaler = joblib.load("models/scaler.pkl")
+    # label_enc_edu = joblib.load("models/label_encoder_education.pkl")
+    # label_enc_emp = joblib.load("models/label_encoder_self_employed.pkl")
+    # scaler = joblib.load("models/scaler.pkl")
 except Exception as e:
     st.error(f"Failed to load model or encoders: {e}")
     st.stop()
